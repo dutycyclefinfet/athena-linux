@@ -2,8 +2,8 @@
 
 pkgnames=(athena-linux)
 url="https://github.com/lonelytransistor/athena-linux"
-pkgver=1.0.0-1
-timestamp=2022-02-06T07:36:50+0000
+pkgver=$(cat version)
+timestamp=$(date +"%Y-%m-%dT%H:%M:%S%z")
 pkgdesc="Athena kernel"
 section="utils"
 maintainer="Lonely Transistor <lonelytransistor@protonmail.com>"
@@ -67,10 +67,7 @@ function _buildKernel() {
 prepare() {
     echo "You are NOT prepared."
 
-    git clone https://github.com/lonelytransistor/athena-linux "${srcdir}"
-    cd "${srcdir}"
-    git submodule init
-    git submodule update
+    git clone https://github.com/lonelytransistor/athena-linux "${srcdir}" --recursive --shallow-submodules
 }
 build() {
     touch /repo/Packages.gz
