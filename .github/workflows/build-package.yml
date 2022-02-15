@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          ref: zero-colors
       - name: Get version name
         id: version_name
         run: |
